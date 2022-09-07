@@ -3,7 +3,7 @@
 describe('Funcionalidade página de produtos', () => {
 
     beforeEach(() => {
-        cy.visit('produtos')
+        cy.visit('produto')
     });
 
     it('Deve selecionar um produto da lista', () => {
@@ -11,18 +11,33 @@ describe('Funcionalidade página de produtos', () => {
             //.first()
             //.last()
             //.eq(3)
-            .contains('[62312138] Produto Lgc2')
+            .contains('Ajax Full-Zip Sweatshirt')
             .click()
     });
 
     it.only('Deve adicionar um produto ao carrinho', () => {
-        cy.get('[class="product-block grid"]')
-            .contains('[62312138] Produto Lgc2').click()
-            cy.get('.summary > .price > ins > .woocommerce-Price-amount > bdi').click()
-            cy.get('.single_add_to_cart_button').click()
+        var quantidade = 3
 
-            cy.get('.dropdown-toggle > .mini-cart-items').should('contain', 1)
-            cy.get('.woocommerce-message').should('contain','“[62312138] Produto Lgc2” foi adicionado no seu carrinho.')
-        
-        });
+        cy.get('[class="product-block grid"]')
+            .contains('Ajax Full-Zip Sweatshirt').click()
+        cy.get('.button-variable-item-M').click()
+        cy.get('.button-variable-item-Blue').click()
+        cy.get('.input-text').clear().type(quantidade)
+        cy.get('.single_add_to_cart_button').click()
+
+        cy.get('.dropdown-toggle > .mini-cart-items').should('contain', quantidade)
+        cy.get('.woocommerce-message').should('contain', quantidade + ' × “Ajax Full-Zip Sweatshirt” foram adicionados no seu carrinho.')
+
+    });
+
+    it('Deve adicionar produtos ao carrinho - Usando Comando customizado', () => {
+        cy.addProdutos('Ajax Full-Zip Sweatshirt', 'M', 'Blue', '2')
+    });
+
+    it('Deve adicionar produtos ao carrinho - Usando Comando customizado', () => {
+        cy.addProdutos('Ajax Full-Zip Sweatshirt', 'XS', 'Red', '5')
+    });
+
+
 });
+
