@@ -31,11 +31,11 @@ describe('Funcionalidade página de produtos', () => {
     });
 
     it('Deve adicionar produtos ao carrinho - Usando Comando customizado', () => {
-        cy.addProdutos('Ajax Full-Zip Sweatshirt', 'M', 'Blue', '2')
+        cy.addProdutos('Ajax Full-Zip Sweatshirt', 'M', 'Blue', '4')
     });
 
     it('Deve adicionar produtos ao carrinho - Usando Comando customizado', () => {
-        cy.addProdutos('Ajax Full-Zip Sweatshirt', 'XS', 'Red', '5')
+        cy.addProdutos('Ajax Full-Zip Sweatshirt', 'XS', 'Red', '4')
     });
 
 
